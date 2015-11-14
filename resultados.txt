@@ -1,0 +1,33 @@
+Resultados:
+
+25 Cidades:
+    Simulated Annealing
+        Initial distance:  2606.10744557
+        Final distance:  780.182047923
+    Genetic Algorithm
+        Initial distance: 2594.8336
+        Final distance: 799.1782
+
+50 Cidades:
+    Simulated Annealing
+        Initial distance:  4897.63011599
+        Final distance:  1532.32186819
+    Genetic Algorithm
+        Initial distance: 4903.8204
+        Final distance: 1390.6086
+
+75 Cidades:
+    Simulated Annealing
+        Initial distance:  8157.45777214
+        Final distance:  2200.32682177
+    Genetic Algorithm
+        Initial distance: 8059.4831
+        Final distance: 2919.2844
+
+100 Cidades:
+    Simulated Annealing
+        Initial distance:  10631.0364246
+        Final distance:  3161.60522129
+    Genetic Algorithm
+        Initial distance: 11159.9226
+        Final distance: 4905.9245

@@ -30,6 +30,10 @@ if __name__ == "__main__":
     plt.plot(simulated_annealing.x_graph, simulated_annealing.y_graph)
     plt.plot(genetic_algorithm.x_graph, genetic_algorithm.y_graph)
     plt.legend(['Simulated Annealing', 'Genetic Algorhtm'], loc='upper right')
+    plt.text(simulated_annealing.x_graph[-1], simulated_annealing.y_graph[-1] + 5,
+        "%.4f" % simulated_annealing.best_distance)
+    plt.text(genetic_algorithm.x_graph[-1], genetic_algorithm.y_graph[-1] + 5,
+        "%.4f" % genetic_algorithm.best_distance)
     plt.xlabel('Iteration')
     plt.ylabel('Distance')
     plt.grid(True)

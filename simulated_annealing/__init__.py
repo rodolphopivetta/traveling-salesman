@@ -12,6 +12,7 @@ class SimulatedAnnealing:
     y_graph = []
     ini = None
     end = None
+    best_distance = 0
 
     def __init__(self, window, cities_list):
         self.ini = window.figure.add_subplot(211)
@@ -60,6 +61,7 @@ class SimulatedAnnealing:
         self.plt_reload(212, best.get_tour(), self._temp)
         self.x_graph.append(self.x_graph[-1] + 1)
         self.y_graph.append(best.get_distance())
+        self.best_distance = best.get_distance()
 
 
     def swap_solution(self, new_solution):

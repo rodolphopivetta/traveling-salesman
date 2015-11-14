@@ -6,7 +6,7 @@ from tour import Tour
 import matplotlib.pyplot as plt
 
 class GeneticAlgorithm:
-    _mutation_rate = 0.0015
+    _mutation_rate = 0.015
     _tournament_size = 5
     _cities_list = []
     _elitism = True
@@ -14,6 +14,7 @@ class GeneticAlgorithm:
     y_graph = []
     ini = None
     end = None
+    best_distance = 0
 
 
     def __init__(self, window, cities_list):
@@ -23,7 +24,7 @@ class GeneticAlgorithm:
         self._cities_list = cities_list
         random.seed()
 
-        pop = Population(50, True, self._cities_list)
+        pop = Population(1000, True, self._cities_list)
         self.plt_reload(211, self._cities_list, 'Starting')
         print 'Initial distance: %.4f' % (pop.get_fittest().get_distance())
         self.x_graph.append(0)
@@ -58,10 +59,10 @@ class GeneticAlgorithm:
         self.x_graph.append(self.x_graph[-1] + 1)
         self.y_graph.append(pop.get_fittest().get_distance())
 
-        print 'Finished'
         print 'Final distance: %.4f' % (pop.get_fittest().get_distance())
         print 'Solution:'
         print pop.get_fittest()
+        self.best_distance = pop.get_fittest().get_distance()
 
 
     def crossover(self, parent1, parent2):
