@@ -14,15 +14,17 @@ class SimulatedAnnealing:
     end = None
     best_distance = 0
 
-    def __init__(self, window, cities_list):
-        self.ini = window.figure.add_subplot(211)
-        self.end = window.figure.add_subplot(212)
+    def __init__(self, window, cities_list, show_window=True):
+        if show_window:
+            self.ini = window.figure.add_subplot(211)
+            self.end = window.figure.add_subplot(212)
 
         self._cities_list = cities_list
 
         current_solution = Tour()
         current_solution.generate(self._cities_list)
-        self.plt_reload(211, current_solution.get_tour(), self._temp)
+        if show_window:
+            self.plt_reload(211, current_solution.get_tour(), self._temp)
 
         print 'Initial distance: ', current_solution.get_distance()
         self.x_graph.append(0)
@@ -50,15 +52,16 @@ class SimulatedAnnealing:
 
             if current_solution.get_distance() < best.get_distance():
                 best = current_solution
-                self.plt_reload(212, new_solution.get_tour(), self._temp)
+                if show_window:
+                    self.plt_reload(212, new_solution.get_tour(), self._temp)
                 self.x_graph.append(self.x_graph[-1] + 1)
                 self.y_graph.append(new_solution.get_distance())
 
             self._temp *= (1 - self._cooling_rate)
 
-        print 'Final distance: ', best.get_distance()
-        print 'Tour: ', best
-        self.plt_reload(212, best.get_tour(), self._temp)
+        print 'Final distance: %.4f' % (best.get_distance())
+        if show_window:
+            self.plt_reload(212, best.get_tour(), self._temp)
         self.x_graph.append(self.x_graph[-1] + 1)
         self.y_graph.append(best.get_distance())
         self.best_distance = best.get_distance()
@@ -108,6 +111,10 @@ class SimulatedAnnealing:
         if new_energy < energy:
             return 1.0
         return math.exp((energy - new_energy) / temperature)
+
+
+    def get_best_distance(self):
+        return self.best_distance
 
 
     def plt_reload(self, f, cities, temp=''):

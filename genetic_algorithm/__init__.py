@@ -17,15 +17,17 @@ class GeneticAlgorithm:
     best_distance = 0
 
 
-    def __init__(self, window, cities_list):
-        self.ini = window.figure.add_subplot(211)
-        self.end = window.figure.add_subplot(212)
+    def __init__(self, window, cities_list, show_window=True):
+        if show_window:
+            self.ini = window.figure.add_subplot(211)
+            self.end = window.figure.add_subplot(212)
 
         self._cities_list = cities_list
         random.seed()
 
         pop = Population(1000, True, self._cities_list)
-        self.plt_reload(211, self._cities_list, 'Starting')
+        if show_window:
+            self.plt_reload(211, self._cities_list, 'Starting')
         print 'Initial distance: %.4f' % (pop.get_fittest().get_distance())
         self.x_graph.append(0)
         self.y_graph.append(pop.get_fittest().get_distance())
@@ -51,17 +53,17 @@ class GeneticAlgorithm:
             for i in xrange(elitism_offset, new_population.population_size()):
                 self.mutate(new_population.get_tour(i))
             pop = new_population
-            self.plt_reload(212, pop.get_fittest().get_tour(), 'Iteration: ' + str(j + 1))
+            if show_window:
+                self.plt_reload(212, pop.get_fittest().get_tour(), 'Iteration: ' + str(j + 1))
             self.x_graph.append(self.x_graph[-1] + 1)
             self.y_graph.append(pop.get_fittest().get_distance())
 
-        self.plt_reload(212, pop.get_fittest().get_tour(), 'Iteration: ' + str(j + 1))
+        if show_window:
+            self.plt_reload(212, pop.get_fittest().get_tour(), 'Iteration: ' + str(j + 1))
         self.x_graph.append(self.x_graph[-1] + 1)
         self.y_graph.append(pop.get_fittest().get_distance())
 
         print 'Final distance: %.4f' % (pop.get_fittest().get_distance())
-        print 'Solution:'
-        print pop.get_fittest()
         self.best_distance = pop.get_fittest().get_distance()
 
 
@@ -108,6 +110,11 @@ class GeneticAlgorithm:
             tournament.save_tour(i, pop.get_tour(random_id))
 
         return tournament.get_fittest()
+
+
+    def get_best_distance(self):
+        return self.best_distance
+
 
     def plt_reload(self, f, cities, msg):
         x_list = []

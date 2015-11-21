@@ -13,8 +13,11 @@
 
 \begin{document}
 	\title{Relatório de Implementação: \textit{Simulated Annealing} e Algoritmo Genético para solução do problema do Caixeiro Viajante}
-	\author{Rodolpho Pivetta Sabino}
-	\markboth{Universidade Estadual de Mato Grosso do Sul \newline Inteligência Artificial - Prof. Dr. Osvaldo Vargas Jacques}{}
+	\author{
+		Rodolpho Pivetta Sabino
+
+		23/11/2015}
+	\markboth{Universidade Estadual de Mato Grosso do Sul \newline Inteligência Artificial \newline Prof. Dr. Osvaldo Vargas Jacques}{}
 	\maketitle
 
 \begin{abstract}
@@ -169,6 +172,18 @@
 		\fbox{\includegraphics[width=\columnwidth]{100-genetic.png}}
 		\caption{Solução final do AG}
 		\label{fig:100-genetic}
+		\end{center}
+	\end{figure}
+
+	Outro fator observado na execução dos algoritmos foi a qualidade da conversão das soluções. Foram realizados 10 testes para cada algoritmo utilizando conjuntos de 10, 20, ..., 70, 80 cidades, totalizando 80 execuções para cada um dos algoritmos.
+
+	Este teste comparou a quantidade de cidades com as soluções médias encontradas. A Fig.~\ref{fig:tests} mostra um gráfico com esses resultados. Mais uma vez, o algoritmo SA se saiu melhor que o GA nos testes.
+
+	\begin{figure}[H]
+		\begin{center}
+		\fbox{\includegraphics[width=\columnwidth]{tests.png}}
+		\caption{Comparação dos algoritmos com relação à quantidade de cidades \textit{versus} distâncias médias}
+		\label{fig:tests}
 		\end{center}
 	\end{figure}
 
